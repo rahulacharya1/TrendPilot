@@ -17,7 +17,7 @@ const HookList = ({ hooks = [], loading }) => {
 
     if (hooks.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center p-12 bg-card text-foreground rounded-2xl border border-border/80 shadow-xs text-center select-none min-h-[300px] h-full">
+            <div className="flex flex-col items-center justify-center p-12 bg-card text-foreground rounded-2xl border border-border/80 shadow-xs text-center select-none min-h-75 h-full">
                 <p className="text-muted-foreground text-sm font-medium">
                     No hooks generated yet.
                 </p>

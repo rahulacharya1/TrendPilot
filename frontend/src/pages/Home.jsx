@@ -21,7 +21,7 @@ const MockupDashboard = () => {
             </div>
 
             {/* Inner Dashboard Layout */}
-            <div className="grid grid-cols-12 h-[340px]">
+            <div className="grid grid-cols-12 h-85">
                 {/* Sidebar mock */}
                 <div className="col-span-3 border-r border-slate-900 bg-slate-950/60 p-4 space-y-3 hidden sm:block">
                     <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center mb-6">
@@ -94,7 +94,7 @@ const Home = () => {
             <div className="bg-background text-foreground transition-colors duration-300">
                 {/* Hero Section */}
                 <section className="relative py-16 overflow-hidden">
-                    <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+                    <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
                     <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                         <div className="lg:col-span-6 text-center lg:text-left">
                             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-semibold text-purple-600 dark:text-purple-400 mb-6 select-none">
@@ -197,7 +197,7 @@ const Home = () => {
                 {/* Premium CTA Banner */}
                 <section className="py-20 max-w-5xl mx-auto px-6">
                     <div className="rounded-3xl bg-linear-to-br from-purple-900 to-indigo-950 text-white p-8 sm:p-12 relative overflow-hidden shadow-xl">
-                        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-600/20 rounded-full blur-3xl pointer-events-none" />
+                        <div className="absolute top-0 right-0 w-75 h-75 bg-purple-600/20 rounded-full blur-3xl pointer-events-none" />
                         <div className="relative z-10 max-w-xl">
                             <h2 className="text-3xl sm:text-4xl font-bold">Ready to automate your content engine?</h2>
                             <p className="text-purple-200 mt-4 text-base sm:text-lg leading-relaxed">

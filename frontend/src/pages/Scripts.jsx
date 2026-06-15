@@ -54,7 +54,7 @@ const ScriptDetailsCard = ({ script }) => {
                         )}
                     </button>
                 </div>
-                <div className="p-4 rounded-xl bg-muted/30 border border-border/40 text-sm leading-relaxed whitespace-pre-wrap max-h-[250px] overflow-y-auto font-medium text-foreground">
+                <div className="p-4 rounded-xl bg-muted/30 border border-border/40 text-sm leading-relaxed whitespace-pre-wrap max-h-62.5 overflow-y-auto font-medium text-foreground">
                     {script.script}
                 </div>
             </div>
@@ -73,7 +73,7 @@ const ScriptDetailsCard = ({ script }) => {
                             {copiedSec === "caption" ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                         </button>
                     </div>
-                    <div className="p-3.5 rounded-xl bg-muted/40 border border-border/40 text-xs text-foreground leading-normal min-h-[60px]">
+                    <div className="p-3.5 rounded-xl bg-muted/40 border border-border/40 text-xs text-foreground leading-normal min-h-15">
                         {script.caption}
                     </div>
                 </div>
@@ -91,7 +91,7 @@ const ScriptDetailsCard = ({ script }) => {
                             {copiedSec === "cta" ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                         </button>
                     </div>
-                    <div className="p-3.5 rounded-xl bg-muted/40 border border-border/40 text-xs text-foreground leading-normal min-h-[60px]">
+                    <div className="p-3.5 rounded-xl bg-muted/40 border border-border/40 text-xs text-foreground leading-normal min-h-15">
                         {script.cta}
                     </div>
                 </div>
@@ -167,7 +167,7 @@ const Scripts = () => {
                     {selectedScript ? (
                         <ScriptDetailsCard script={selectedScript} />
                     ) : (
-                        <div className="bg-card text-foreground p-8 rounded-2xl border border-border/80 shadow-xs min-h-[300px] h-full flex flex-col items-center justify-center text-center select-none">
+                        <div className="bg-card text-foreground p-8 rounded-2xl border border-border/80 shadow-xs min-h-75 h-full flex flex-col items-center justify-center text-center select-none">
                             <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
                                 <FileText className="w-6 h-6 text-primary" />
                             </div>

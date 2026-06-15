@@ -14,9 +14,9 @@ const ScriptHistory = ({ scripts = [], loading, onSelect, selectedId }) => {
 
     if (scripts.length === 0) {
         return (
-            <div className="bg-card text-foreground p-6 rounded-2xl border border-border/80 shadow-xs select-none min-h-[200px] flex flex-col items-center justify-center text-center">
+            <div className="bg-card text-foreground p-6 rounded-2xl border border-border/80 shadow-xs select-none min-h-50 flex flex-col items-center justify-center text-center">
                 <p className="text-sm font-semibold text-muted-foreground">No scripts generated yet</p>
-                <p className="text-xs text-muted-foreground/80 mt-1 max-w-[200px]">
+                <p className="text-xs text-muted-foreground/80 mt-1 max-w-50">
                     Create a script description on the left to generate short-form videos scripts.
                 </p>
             </div>
@@ -40,7 +40,7 @@ const ScriptHistory = ({ scripts = [], loading, onSelect, selectedId }) => {
                             }`}
                         >
                             <div className="flex justify-between items-center">
-                                <span className="text-sm truncate pr-2 max-w-[200px]">
+                                <span className="text-sm truncate pr-2 max-w-50">
                                     {item.trend_title || "AI Generated Script"}
                                 </span>
                                 <span className="text-[10px] text-muted-foreground shrink-0 font-normal">
