@@ -1,16 +1,11 @@
 import axiosInstance from "@/api/axios"
 
-export const generateScript = async (
-    topic
-) => {
+export const getScripts = async () => {
+    const response = await axiosInstance.get("/scripts/")
+    return response.data
+}
 
-    const response =
-        await axiosInstance.post(
-            "/scripts/generate/",
-            {
-                topic,
-            }
-        )
-
+export const generateScript = async (topic) => {
+    const response = await axiosInstance.post("/scripts/generate/", { topic })
     return response.data
 }

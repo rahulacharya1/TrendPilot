@@ -1,35 +1,39 @@
-import logo from "@/assets/logo/tp-logo.png"
+import SearchBar from "./SearchBar"
+import ThemeToggle from "./ThemeToggle"
+import UserMenu from "./UserMenu"
+import { Bell } from "lucide-react"
 
 const Navbar = () => {
-
     return (
-
-        <nav className="w-full h-16 border-b bg-white flex items-center justify-between px-6">
-
-            <div className="flex items-center gap-3">
-
-                <img
-                    src={logo}
-                    alt="TrendPilot"
-                    className="w-10 h-10"
-                />
-
-                <h1 className="text-2xl font-bold">
-                    TrendPilot
-                </h1>
-
+        <nav className="w-full h-16 border-b border-border bg-card text-foreground flex items-center justify-between px-8 select-none">
+            {/* Left Search Bar */}
+            <div className="flex items-center gap-4 flex-1">
+                <SearchBar />
             </div>
 
+            {/* Right Controls */}
             <div className="flex items-center gap-4">
-
-                <button className="px-4 py-2 rounded-lg bg-linear-to-r from-blue-500 to-purple-500 text-white">
-                    Upgrade
+                {/* Notification Bell */}
+                <button 
+                    className="p-2.5 rounded-xl border border-border bg-card text-foreground hover:bg-muted transition duration-200 flex items-center justify-center cursor-pointer relative"
+                    aria-label="Notifications"
+                >
+                    <Bell className="w-4.5 h-4.5" />
+                    <span className="absolute top-2 right-2.5 w-1.5 h-1.5 rounded-full bg-primary" />
                 </button>
 
-            </div>
+                {/* Theme Toggle */}
+                <ThemeToggle />
 
+                {/* Vertical Divider */}
+                <div className="h-6 w-px bg-border" />
+
+                {/* User Profile */}
+                <UserMenu />
+            </div>
         </nav>
     )
 }
 
-export default Navbar;
+export default Navbar
+

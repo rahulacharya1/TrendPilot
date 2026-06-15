@@ -1,16 +1,11 @@
 import axiosInstance from "@/api/axios"
 
-export const generateHooks = async (
-    topic
-) => {
+export const getHooks = async () => {
+    const response = await axiosInstance.get("/hooks/")
+    return response.data
+}
 
-    const response =
-        await axiosInstance.post(
-            "/hooks/generate/",
-            {
-                topic,
-            }
-        )
-
+export const generateHooks = async (topic) => {
+    const response = await axiosInstance.post("/hooks/generate/", { topic })
     return response.data
 }

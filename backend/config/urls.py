@@ -9,4 +9,5 @@ urlpatterns = [
     path('api/hooks/', include('hooks.urls')),
     path('api/scripts/', include('scripts.urls')),
     path('api/competitors/', include('competitors.urls')),
+    path('api/analytics/', include('analytics.urls')),
 ]

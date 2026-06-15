@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import DashboardLayout from "@/layouts/DashboardLayout"
 
 import Header from "@/components/common/Header"
@@ -7,6 +8,7 @@ import DashboardGrid from "@/components/dashboard/DashboardGrid"
 import AnalyticsChart from "@/components/dashboard/AnalyticsChart"
 import RecentHooks from "@/components/dashboard/RecentHooks"
 import TopTopics from "@/components/dashboard/TopTopics"
+import { getDashboardStats } from "@/services/analyticsService"
 
 import {
     TrendingUp,
@@ -16,6 +18,22 @@ import {
 } from "lucide-react"
 
 const Dashboard = () => {
+    const [stats, setStats] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                const data = await getDashboardStats()
+                setStats(data)
+            } catch (err) {
+                console.error("Failed to fetch dashboard stats", err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchStats()
+    }, [])
 
     return (
 
@@ -30,29 +48,29 @@ const Dashboard = () => {
 
                 <StatsCard
                     title="Total Trends"
-                    value="120"
-                    growth="+12%"
+                    value={loading ? "..." : stats?.trends?.count ?? "0"}
+                    growth={loading ? "" : stats?.trends?.growth ?? "+0%"}
                     icon={<TrendingUp />}
                 />
 
                 <StatsCard
                     title="Generated Hooks"
-                    value="340"
-                    growth="+22%"
+                    value={loading ? "..." : stats?.hooks?.count ?? "0"}
+                    growth={loading ? "" : stats?.hooks?.growth ?? "+0%"}
                     icon={<Sparkles />}
                 />
 
                 <StatsCard
                     title="AI Scripts"
-                    value="85"
-                    growth="+8%"
+                    value={loading ? "..." : stats?.scripts?.count ?? "0"}
+                    growth={loading ? "" : stats?.scripts?.growth ?? "+0%"}
                     icon={<FileText />}
                 />
 
                 <StatsCard
                     title="Competitors"
-                    value="27"
-                    growth="+5%"
+                    value={loading ? "..." : stats?.competitors?.count ?? "0"}
+                    growth={loading ? "" : stats?.competitors?.growth ?? "+0%"}
                     icon={<Users />}
                 />
 

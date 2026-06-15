@@ -4,39 +4,46 @@ const StatsCard = ({
     growth,
     icon,
 }) => {
+    // Custom colors based on metric category
+    let iconColors = "bg-primary/10 text-primary"
+    if (title.includes("Trends")) iconColors = "bg-emerald-500/10 text-emerald-500"
+    if (title.includes("Hooks")) iconColors = "bg-purple-500/10 text-purple-500"
+    if (title.includes("Scripts")) iconColors = "bg-indigo-500/10 text-indigo-500"
+    if (title.includes("Competitors")) iconColors = "bg-blue-500/10 text-blue-500"
+
+    const isPositive = growth.startsWith("+")
 
     return (
-
-        <div className="bg-white p-6 rounded-2xl border shadow-sm">
-
+        <div className="bg-card p-6 rounded-2xl border border-border/80 shadow-xs hover:shadow-md hover:border-border transition-all duration-200 select-none">
             <div className="flex items-center justify-between">
-
-                <div>
-
-                    <p className="text-gray-500">
+                <div className="space-y-1">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                         {title}
                     </p>
-
-                    <h2 className="text-4xl font-bold mt-3">
+                    <h2 className="text-3xl font-bold text-foreground">
                         {value}
                     </h2>
-
-                    <p className="text-green-500 mt-2">
-                        {growth}
-                    </p>
-
+                    <div className="flex items-center gap-1.5 pt-1.5">
+                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
+                            isPositive 
+                                ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" 
+                                : "bg-destructive/10 text-destructive"
+                        }`}>
+                            {growth}
+                        </span>
+                        <span className="text-[10px] text-muted-foreground font-medium">
+                            vs last month
+                        </span>
+                    </div>
                 </div>
 
-                <div className="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center">
-
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${iconColors}`}>
                     {icon}
-
                 </div>
-
             </div>
-
         </div>
     )
 }
 
 export default StatsCard
+
