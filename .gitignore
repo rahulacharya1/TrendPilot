@@ -1,0 +1,57 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyc
+staticfiles/
+media/
+
+# Virtual Environments
+server/
+venv/
+env/
+.venv/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.development
+*.local
+
+# Database
+*.sqlite3
+db.sqlite3
+
+# Node / Frontend Build
+node_modules/
+dist/
+dist-ssr/
+build/
+
+# IDE / System Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and Coverage
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+htmlcov/
+.coverage
+.coverage.*
+
