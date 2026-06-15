@@ -7,7 +7,7 @@ import useAuthStore from "@/store/authStore"
 
 const Login = () => {
     const navigate = useNavigate()
-    const setUser = useAuthStore((state) => state.setUser)
+    const setAuth = useAuthStore((state) => state.setAuth)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -29,9 +29,7 @@ const Login = () => {
                 password,
             })
             if (data.success) {
-                localStorage.setItem("token", data.access)
-                localStorage.setItem("refreshToken", data.refresh)
-                setUser(data.user)
+                setAuth(data.user, data.access, data.refresh)
                 navigate("/dashboard")
             } else {
                 setError(data.error || "Login failed.")
