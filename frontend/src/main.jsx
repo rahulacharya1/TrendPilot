@@ -5,6 +5,7 @@ import App from "./App"
 import "./index.css"
 
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { Toaster } from "sonner"
 
 ReactDOM.createRoot(
     document.getElementById("root")
@@ -14,6 +15,7 @@ ReactDOM.createRoot(
 
         <TooltipProvider>
             <App />
+            <Toaster richColors position="top-right" />
         </TooltipProvider>
 
     </React.StrictMode>

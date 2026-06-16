@@ -1,17 +1,5 @@
-import google.generativeai as genai
-import os
 import json
-from dotenv import load_dotenv
-
-load_dotenv()
-
-genai.configure(
-    api_key=os.getenv("GEMINI_API_KEY")
-)
-
-model = genai.GenerativeModel(
-    "gemini-1.5-flash"
-)
+from utils.gemini_client import model
 
 
 def generate_script(topic):
@@ -31,14 +19,11 @@ def generate_script(topic):
     response = model.generate_content(prompt)
     text = response.text.strip()
 
-    # Strip markdown block if it exists
-    if text.startswith("```json"):
-        text = text[7:]
-    elif text.startswith("```"):
-        text = text[3:]
-    if text.endswith("```"):
-        text = text[:-3]
-    text = text.strip()
+    # Extract JSON object content between the first { and the last }
+    start_idx = text.find('{')
+    end_idx = text.rfind('}')
+    if start_idx != -1 and end_idx != -1:
+        text = text[start_idx:end_idx+1]
 
     try:
         return json.loads(text)

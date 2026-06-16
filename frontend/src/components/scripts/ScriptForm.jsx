@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { FileText, Lightbulb } from "lucide-react"
+import { toast } from "sonner"
 
 const ScriptForm = ({ onGenerate, loading }) => {
     const [topic, setTopic] = useState("")
@@ -8,9 +9,11 @@ const ScriptForm = ({ onGenerate, loading }) => {
         if (!topic.trim() || loading) return
         try {
             await onGenerate(topic)
+            toast.success("AI script generated successfully!")
             setTopic("")
         } catch (err) {
             console.error(err)
+            toast.error(err.response?.data?.error || "Failed to generate script. Please try again.")
         }
     }
 

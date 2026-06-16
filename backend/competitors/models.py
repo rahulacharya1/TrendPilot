@@ -1,6 +1,10 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class CompetitorAnalysis(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     creator_name = models.CharField(max_length=255)
     platform = models.CharField(max_length=50)
     content_angle = models.TextField()

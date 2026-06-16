@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 import DashboardLayout from "@/layouts/DashboardLayout"
-
 import Header from "@/components/common/Header"
-
 import StatsCard from "@/components/dashboard/StatsCard"
 import DashboardGrid from "@/components/dashboard/DashboardGrid"
 import AnalyticsChart from "@/components/dashboard/AnalyticsChart"
 import RecentHooks from "@/components/dashboard/RecentHooks"
 import TopTopics from "@/components/dashboard/TopTopics"
 import { getDashboardStats } from "@/services/analyticsService"
+import useAuthStore from "@/store/authStore"
 
 import {
     TrendingUp,
@@ -20,6 +19,7 @@ import {
 const Dashboard = () => {
     const [stats, setStats] = useState(null)
     const [loading, setLoading] = useState(true)
+    const { user } = useAuthStore()
 
     useEffect(() => {
         const fetchStats = async () => {
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
             <Header
                 title="Dashboard"
-                subtitle="Welcome back Rahul 👋"
+                subtitle={`Welcome back ${user?.username || "Creator"} 👋`}
             />
 
             <DashboardGrid>

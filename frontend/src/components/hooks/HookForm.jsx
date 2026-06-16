@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Sparkles, HelpCircle } from "lucide-react"
+import { toast } from "sonner"
 
 const HookForm = ({ onGenerate, loading }) => {
     const [topic, setTopic] = useState("")
@@ -8,9 +9,11 @@ const HookForm = ({ onGenerate, loading }) => {
         if (!topic.trim() || loading) return
         try {
             await onGenerate(topic)
+            toast.success("Viral hooks generated successfully!")
             setTopic("")
         } catch (err) {
             console.error(err)
+            toast.error(err.response?.data?.error || "Failed to generate hooks. Please try again.")
         }
     }
 

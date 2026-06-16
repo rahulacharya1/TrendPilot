@@ -127,7 +127,7 @@ const ScriptDetailsCard = ({ script }) => {
 }
 
 const Scripts = () => {
-    const { scripts, loading, fetchScripts, generateScript } = useScripts()
+    const { scripts, loading, error, fetchScripts, generateScript } = useScripts()
     const [selectedScript, setSelectedScript] = useState(null)
 
     useEffect(() => {
@@ -142,6 +142,7 @@ const Scripts = () => {
             }
         } catch (err) {
             console.error(err)
+            throw err
         }
     }
 
@@ -151,6 +152,12 @@ const Scripts = () => {
                 title="Script Generator"
                 subtitle="Create AI powered scripts"
             />
+
+            {error && (
+                <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-sm font-medium">
+                    {error}
+                </div>
+            )}
 
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
                 <div className="xl:col-span-1 space-y-6">
