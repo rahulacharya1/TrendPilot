@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
 import DashboardLayout from "@/layouts/DashboardLayout"
 import Header from "@/components/common/Header"
 import HookForm from "@/components/hooks/HookForm"
@@ -7,6 +8,8 @@ import useHooks from "@/hooks/useHooks"
 
 const Hooks = () => {
     const { hooks, loading, error, fetchHooks, generateHooks } = useHooks()
+    const location = useLocation()
+    const initialTopic = location.state?.topic || ""
 
     useEffect(() => {
         fetchHooks()
@@ -26,7 +29,7 @@ const Hooks = () => {
             )}
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-                <HookForm onGenerate={generateHooks} loading={loading} />
+                <HookForm onGenerate={generateHooks} loading={loading} initialTopic={initialTopic} />
                 <HookList hooks={hooks} loading={loading} />
             </div>
         </DashboardLayout>

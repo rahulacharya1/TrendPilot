@@ -21,6 +21,11 @@ const Register = () => {
             setError("All fields are required.")
             return
         }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.trim())) {
+            setError("Please enter a valid email address.")
+            return
+        }
         if (password.length < 8) {
             setError("Password must be at least 8 characters.")
             return

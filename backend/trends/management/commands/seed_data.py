@@ -5,7 +5,7 @@ from scripts.models import Script
 from competitors.models import CompetitorAnalysis
 
 class Command(BaseCommand):
-    help = 'Seeds the database with realistic Trend, Hook, and Script data'
+    help = 'Seeds the database with realistic cross-niche Trend, Hook, and Script data'
 
     def handle(self, *args, **options):
         # Clear existing data to ensure clean seeding
@@ -15,48 +15,48 @@ class Command(BaseCommand):
         Script.objects.all().delete()
         CompetitorAnalysis.objects.all().delete()
 
-        # Define high-quality real-world trends
+        # Define high-quality real-world trends across diverse niches
         seed_trends = [
             {
-                "title": "Vite 6 + Rolldown Compiler Rollout",
+                "title": "Google Gemini AI Extensions for Daily Productivity",
                 "platform": "YouTube",
-                "category": "Tech & Web Development",
+                "category": "Technology & AI",
                 "score": 98,
                 "freshness": "Breakout"
             },
             {
-                "title": "AI Agent Workflows in Python & LangChain",
-                "platform": "YouTube",
-                "category": "Artificial Intelligence",
-                "score": 95,
+                "title": "The Rise of Micro-Investing Apps for Gen-Z",
+                "platform": "Instagram Reels",
+                "category": "Finance & Investing",
+                "score": 94,
                 "freshness": "High"
             },
             {
-                "title": "Solo Developer SaaS Micro-Monetization Models",
-                "platform": "TikTok",
-                "category": "SaaS & Business",
+                "title": "Cold Plunge and Ice Bath Recovery Protocols",
+                "platform": "Instagram Reels",
+                "category": "Health & Fitness",
+                "score": 91,
+                "freshness": "Breakout"
+            },
+            {
+                "title": "Faceless YouTube Channels Using AI Voiceovers",
+                "platform": "YouTube",
+                "category": "Digital Marketing",
                 "score": 89,
                 "freshness": "Medium"
             },
             {
-                "title": "Short-Form Video Viewer Retention Frameworks",
-                "platform": "Instagram Reels",
-                "category": "Creator Economy",
-                "score": 92,
-                "freshness": "High"
-            },
-            {
-                "title": "Why PostgreSQL is Replacing MongoDB for Early Startups",
+                "title": "Digital Nomad Visas for European Countries in 2026",
                 "platform": "YouTube",
-                "category": "Tech & Database",
+                "category": "Lifestyle & Travel",
                 "score": 87,
                 "freshness": "Medium"
             },
             {
-                "title": "The Rise of HSL & OKLCH Color Systems in CSS4",
-                "platform": "TikTok",
-                "category": "UI/UX Design",
-                "score": 79,
+                "title": "High-Protein Low-Calorie Meal Prep Hacks",
+                "platform": "Instagram Reels",
+                "category": "Food & Wellness",
+                "score": 95,
                 "freshness": "Breakout"
             }
         ]
@@ -73,68 +73,68 @@ class Command(BaseCommand):
             created_trends.append(trend)
             self.stdout.write(self.style.SUCCESS(f'Created Trend: {trend.title}'))
 
-        # Create some real hooks for these trends to populate the DB
-        # Trend 1: Vite 6
+        # Create hooks for these trends to populate the DB
+        # Trend 1: Gemini AI Productivity
         Hook.objects.create(
             trend=created_trends[0],
             hook_type="Curiosity",
-            content="This new Vite 6 compiler will compile your project in 0.2 seconds..."
+            content="I automated my entire daily scheduling routine using a simple Gemini AI Extension in 2 clicks..."
         )
         Hook.objects.create(
             trend=created_trends[0],
             hook_type="Authority",
-            content="Top frontend architects are moving away from Webpack entirely for this new tool."
+            content="Why productivity experts are swapping standard calendar apps for local AI agents."
         )
 
-        # Trend 2: AI Agents
+        # Trend 2: Micro-Investing
         Hook.objects.create(
             trend=created_trends[1],
             hook_type="Storytelling",
-            content="I automated my entire daily scheduling routine using a local Python script in 30 lines..."
+            content="How I grew my spare change into a ₹15,000 portfolio using automatic rounding apps..."
         )
         Hook.objects.create(
             trend=created_trends[1],
             hook_type="Curiosity",
-            content="The secret model setup that developers are using to build multi-agent applications."
+            content="The hidden micro-investing settings that average creators are using to beat inflation."
         )
 
-        # Trend 3: Solo Dev SaaS
+        # Trend 3: Cold Plunge
         Hook.objects.create(
             trend=created_trends[2],
             hook_type="Authority",
-            content="Why building a SaaS with a single stripe payment link is the fastest path to $5k MRR."
+            content="Why elite athletes are swapping standard steam rooms for 3-minute ice plunges."
         )
 
         # Create scripts
         Script.objects.create(
             trend=created_trends[0],
-            script="[VISUAL: Screen recording showing terminal compiling Vite 6. Fast logs. AUDIO: Speak fast and enthusiastic.] Hey developers, stop waiting for your bundler to finish. Today, Vite 6 dropped with Rolldown, and it compiles 10x faster. Let's look at the benchmarks...",
-            caption="Vite 6 is finally here with Rolldown support! Here is how it changes frontend development speed.",
-            hashtags="#webdevelopment #vitejs #javascript #codingtips",
-            cta="Subscribe to TrendPilot for more frontend updates."
+            script="[VISUAL: Screen recording of a Google Calendar page. An AI assistant window opens and schedules 5 meetings instantly. AUDIO: Clear, fast-paced and encouraging voiceover.] Stop manually entering meetings and scheduling calendar tasks. This new Gemini extension automates all of it in 2 clicks. Watch how I set up my entire weekly pipeline in 5 seconds...",
+            caption="Unlocking 10x speed in daily scheduling using Google Gemini AI Extensions.",
+            hashtags="#productivity #ai #tools #workflow",
+            cta="Subscribe to TrendPilot for more AI workflow secrets."
         )
 
         # Create competitor analysis records
         CompetitorAnalysis.objects.create(
-            creator_name="TechWithTim",
+            creator_name="AliAbdaal",
             platform="YouTube",
-            content_angle="Python tutorials and software engineering guides.",
-            gap_found="Lack of modern AI integration coding tutorials.",
-            competitor_trends="AI agents, FastAPI, Next.js"
+            content_angle="Productivity, study guides, and workspace setups.",
+            gap_found="Lack of deep, hands-on tutorials for Gemini integration workflows.",
+            competitor_trends="Gemini extensions, time blocking"
         )
         CompetitorAnalysis.objects.create(
-            creator_name="Alex Hormozi",
+            creator_name="Ranveer Allahbadia",
             platform="Instagram Reels",
-            content_angle="High energy business advice and lifestyle framing.",
-            gap_found="Very generic SaaS advice, no technical execution steps.",
-            competitor_trends="Solopreneurship, micro-consulting"
+            content_angle="Self-improvement, spirituality, and fitness talks.",
+            gap_found="No direct coverage of cold therapy science breakdowns.",
+            competitor_trends="Cold plunge, dopamine detox"
         )
         CompetitorAnalysis.objects.create(
-            creator_name="DesignCourse",
+            creator_name="Ankur Warikoo",
             platform="YouTube",
-            content_angle="CSS layouts, UI design theory, and color design walkthroughs.",
-            gap_found="Minimal coverage of interactive CSS4 OKLCH gradient setups.",
-            competitor_trends="OKLCH colors, Figma to Code"
+            content_angle="Personal finance tips, micro-investing platforms, and career guides.",
+            gap_found="Minimal comparison review of automatic investing apps for beginners.",
+            competitor_trends="Micro-investing, Index funds"
         )
 
-        self.stdout.write(self.style.SUCCESS('Successfully seeded TrendPilot database with real-world creator data.'))
+        self.stdout.write(self.style.SUCCESS('Successfully seeded TrendPilot database with cross-niche creator data.'))

@@ -11,7 +11,7 @@ const useTrends = () => {
         setError(null)
         try {
             const data = await getTrends()
-            setTrends(data)
+            setTrends(Array.isArray(data) ? data : (data.results || []))
         } catch (err) {
             console.error("Failed to fetch trends", err)
             setError("Failed to load trends data.")

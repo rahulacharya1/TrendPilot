@@ -11,7 +11,7 @@ const useHooks = () => {
         setError(null)
         try {
             const data = await getHooks()
-            setHooks(data)
+            setHooks(Array.isArray(data) ? data : (data.results || []))
         } catch (err) {
             console.error("Failed to fetch hooks", err)
             setError("Failed to load hooks history.")

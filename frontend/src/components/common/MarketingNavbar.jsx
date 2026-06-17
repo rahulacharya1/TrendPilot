@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom"
 import logo from "@/assets/logo/tp-logo.png"
+import useAuthStore from "../../store/authStore"
+import ThemeToggle from "./ThemeToggle"
 
 const MarketingNavbar = () => {
+    const accessToken = useAuthStore((state) => state.accessToken)
+
     const navLinks = [
         { title: "Home", path: "/" },
         { title: "Our Services", path: "/services" },
@@ -39,18 +43,30 @@ const MarketingNavbar = () => {
 
                 {/* Right Actions */}
                 <div className="flex items-center gap-4">
-                    <NavLink
-                        to="/login"
-                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                        Login
-                    </NavLink>
-                    <NavLink
-                        to="/register"
-                        className="text-sm font-medium px-4 py-2 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-all shadow-xs"
-                    >
-                        Get Started
-                    </NavLink>
+                    <ThemeToggle />
+                    {accessToken ? (
+                        <NavLink
+                            to="/dashboard"
+                            className="text-sm font-medium px-4 py-2 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-all shadow-xs"
+                        >
+                            Dashboard
+                        </NavLink>
+                    ) : (
+                        <>
+                            <NavLink
+                                to="/login"
+                                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                Login
+                            </NavLink>
+                            <NavLink
+                                to="/register"
+                                className="text-sm font-medium px-4 py-2 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-all shadow-xs"
+                            >
+                                Get Started
+                            </NavLink>
+                        </>
+                    )}
                 </div>
             </div>
         </header>

@@ -9,7 +9,7 @@ import {
 } from "lucide-react"
 import logo from "@/assets/logo/tp-logo.png"
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
     const menus = [
         {
             title: "Dashboard",
@@ -44,7 +44,9 @@ const Sidebar = () => {
     ]
 
     return (
-        <aside className="w-64 min-h-screen border-r border-sidebar-border bg-sidebar text-sidebar-foreground p-6 flex flex-col justify-between select-none">
+        <aside className={`w-64 min-h-screen border-r border-sidebar-border bg-sidebar text-sidebar-foreground p-6 flex flex-col justify-between select-none fixed inset-y-0 left-0 z-50 lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}>
             <div>
                 {/* Brand Logo & Name */}
                 <div className="flex items-center gap-3 mb-8 px-2">
@@ -60,6 +62,7 @@ const Sidebar = () => {
                         <NavLink
                             key={menu.title}
                             to={menu.path}
+                            onClick={onClose}
                             className={({ isActive }) =>
                                 `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 group ${
                                     isActive
@@ -82,6 +85,7 @@ const Sidebar = () => {
                     <p className="text-[10px] text-muted-foreground mt-1 leading-relaxed">Get unlimited AI generations & real-time trends</p>
                     <NavLink
                         to="/dashboard"
+                        onClick={onClose}
                         className="mt-3 block w-full py-1.5 px-3 rounded-lg bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-[11px] font-semibold text-center transition-all shadow-sm"
                     >
                         Go Premium

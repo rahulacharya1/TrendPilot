@@ -1,10 +1,12 @@
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import DashboardLayout from "@/layouts/DashboardLayout"
 import Header from "@/components/common/Header"
 import useTrends from "@/hooks/useTrends"
 import { Sparkles, RefreshCw } from "lucide-react"
 
 const Trends = () => {
+    const navigate = useNavigate()
     const { trends, loading, error, fetchTrends } = useTrends()
 
     useEffect(() => {
@@ -29,20 +31,57 @@ const Trends = () => {
             </div>
 
             {loading ? (
-                <div className="flex flex-col items-center justify-center py-20 space-y-4">
-                    <div className="w-10 h-10 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
-                    <p className="text-xs text-muted-foreground">Fetching trend feeds...</p>
+                <div className="bg-card border border-border/80 rounded-2xl overflow-hidden shadow-xs select-none">
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="border-b border-border/50 bg-muted/20 text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+                                    <th className="px-6 py-4">Topic / Trend</th>
+                                    <th className="px-6 py-4">Platform</th>
+                                    <th className="px-6 py-4">Category</th>
+                                    <th className="px-6 py-4">Viral Score</th>
+                                    <th className="px-6 py-4">Freshness</th>
+                                    <th className="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/40 text-sm text-foreground">
+                                {[1, 2, 3, 4, 5].map((n) => (
+                                    <tr key={n} className="animate-pulse">
+                                        <td className="px-6 py-5"><div className="h-4 bg-muted rounded w-48" /></td>
+                                        <td className="px-6 py-5"><div className="h-5 bg-muted rounded-full w-20" /></td>
+                                        <td className="px-6 py-5"><div className="h-3.5 bg-muted rounded w-32" /></td>
+                                        <td className="px-6 py-5">
+                                            <div className="flex items-center gap-2">
+                                                <div className="h-1.5 bg-muted rounded w-16" />
+                                                <div className="h-4 bg-muted rounded w-6" />
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-5"><div className="h-5 bg-muted rounded w-16" /></td>
+                                        <td className="px-6 py-5 text-right flex justify-end"><div className="h-8 bg-muted rounded-xl w-24" /></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             ) : error ? (
-                <div className="p-8 border border-destructive/20 bg-destructive/5 rounded-2xl text-center select-none">
-                    <p className="text-sm text-destructive font-medium">{error}</p>
-                    <button onClick={fetchTrends} className="mt-3 text-xs text-primary font-semibold hover:underline">
+                <div className="p-8 border border-red-500/20 bg-red-500/5 rounded-2xl text-center select-none">
+                    <p className="text-sm text-red-600 dark:text-red-400 font-medium">{error}</p>
+                    <button onClick={fetchTrends} className="mt-3 text-xs text-primary font-semibold hover:underline cursor-pointer">
                         Try again
                     </button>
                 </div>
             ) : trends.length === 0 ? (
-                <div className="p-12 border border-border/80 bg-card rounded-2xl text-center select-none">
-                    <p className="text-sm text-muted-foreground">No trends found in database. Seed data first.</p>
+                <div className="flex flex-col items-center justify-center p-12 bg-card text-foreground rounded-2xl border border-border/80 shadow-xs text-center select-none min-h-75 h-full">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 animate-pulse">
+                        <Sparkles className="w-6 h-6 text-primary" />
+                    </div>
+                    <p className="text-muted-foreground text-sm font-semibold">
+                        No trends discovered yet
+                    </p>
+                    <p className="text-xs text-muted-foreground/80 mt-1.5 max-w-xs leading-normal">
+                        Your database has no seed trends. Run the data seeder command in the backend console to populate live trends.
+                    </p>
                 </div>
             ) : (
                 <div className="bg-card border border-border/80 rounded-2xl overflow-hidden shadow-xs select-none">
@@ -62,7 +101,6 @@ const Trends = () => {
                                 {trends.map((trend) => {
                                     // Colored platform badges
                                     let platformBadge = "bg-slate-500/10 text-slate-600 dark:text-slate-400"
-                                    if (trend.platform === "TikTok") platformBadge = "bg-rose-500/10 text-rose-600 dark:text-rose-400"
                                     if (trend.platform === "YouTube") platformBadge = "bg-red-500/10 text-red-600 dark:text-red-400"
                                     if (trend.platform === "Instagram Reels") platformBadge = "bg-pink-500/10 text-pink-600 dark:text-pink-400"
 
@@ -102,7 +140,10 @@ const Trends = () => {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-right">
-                                                <button className="px-3 py-1.5 text-xs font-bold bg-primary text-primary-foreground hover:opacity-90 rounded-xl flex items-center gap-1 shadow-xs transition-all cursor-pointer">
+                                                <button 
+                                                    onClick={() => navigate("/hooks", { state: { topic: trend.title } })}
+                                                    className="px-3 py-1.5 text-xs font-bold bg-primary text-primary-foreground hover:opacity-90 rounded-xl flex items-center gap-1 shadow-xs transition-all cursor-pointer"
+                                                >
                                                     <Sparkles className="w-3 h-3" /> Get Hooks
                                                 </button>
                                             </td>

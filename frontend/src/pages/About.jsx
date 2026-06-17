@@ -68,7 +68,7 @@ const About = () => {
                         The creator economy is growing at an unprecedented rate, but creators face a constant struggle: **burnout** and **ideas exhaustion**. Deciding what to write, what visual hooks to use, and how to structure a script consumes hours of cognitive load.
                     </p>
                     <p className="text-muted-foreground text-sm leading-relaxed mt-4">
-                        TrendPilot changes this. By scanning YouTube, TikTok, and web sources for breakout patterns, our algorithms evaluate trend velocity. When a trend is discovered, our integration with Gemini AI drafts optimized hooks and complete scripts automatically. This gives creators their time back, enabling them to focus on what they do best: **delivering high-quality performance and connection**.
+                        TrendPilot changes this. By scanning YouTube, Instagram, and web sources for breakout patterns, our algorithms evaluate trend velocity. When a trend is discovered, our integration with Gemini AI drafts optimized hooks and complete scripts automatically. This gives creators their time back, enabling them to focus on what they do best: **delivering high-quality performance and connection**.
                     </p>
                 </div>
             </div>

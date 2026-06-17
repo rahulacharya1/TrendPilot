@@ -1,16 +1,17 @@
-const AnalyticsChart = () => {
-    // Monthly generations count
-    const points = [
-        { label: "Jan", val: 45 },
-        { label: "Feb", val: 78 },
-        { label: "Mar", val: 56 },
-        { label: "Apr", val: 98 },
-        { label: "May", val: 82 },
-        { label: "Jun", val: 120 },
+const AnalyticsChart = ({ data }) => {
+    // Monthly generations count fallback
+    const points = (data && data.length > 0) ? data : [
+        { label: "Jan", val: 0 },
+        { label: "Feb", val: 0 },
+        { label: "Mar", val: 0 },
+        { label: "Apr", val: 0 },
+        { label: "May", val: 0 },
+        { label: "Jun", val: 0 },
     ]
 
-    const xCoords = [40, 120, 200, 280, 360, 440]
-    const yCoords = points.map(p => 170 - (p.val / 140) * 120)
+    const xCoords = points.map((_, idx) => 40 + idx * 80)
+    const maxVal = Math.max(...points.map(p => p.val), 1)
+    const yCoords = points.map(p => 170 - (p.val / (maxVal * 1.25)) * 120)
 
     // Construct path strings
     const linePath = xCoords.map((x, idx) => `${idx === 0 ? "M" : "L"} ${x} ${yCoords[idx]}`).join(" ")

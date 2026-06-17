@@ -11,7 +11,7 @@ const useScripts = () => {
         setError(null)
         try {
             const data = await getScripts()
-            setScripts(data)
+            setScripts(Array.isArray(data) ? data : (data.results || []))
         } catch (err) {
             console.error("Failed to fetch scripts", err)
             setError("Failed to load scripts history.")

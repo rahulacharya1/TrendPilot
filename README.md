@@ -7,10 +7,12 @@ TrendPilot AI is an all-in-one AI platform designed for digital content creators
 ## 🚀 Key Features
 
 *   **📈 Real-time Trend Discovery**: Track market trends, score growth potential, and analyze consumer patterns.
-*   **🪝 Hook Generator**: Design high-converting, attention-grabbing opening hooks tailored to specific social niches (TikTok, YouTube, Reels).
-*   **🎬 AI Scriptwriter**: Generate comprehensive production-ready scripts for videos and ads from any trend or topic.
-*   **🔍 Competitor Gap Analysis**: Scrape competitor content and identify opportunities, underserved topics, and audience demands.
-*   **📊 Performance & Analytics Dashboard**: Get unified performance charts of past content generations and historical trends.
+*   **🪝 Hook Generator**: Design high-converting, attention-grabbing opening hooks tailored to specific social niches (YouTube, Instagram Reels) with immediate history prepending.
+*   **🎬 AI Scriptwriter**: Generate comprehensive production-ready scripts with visual cues, captions, and tags.
+*   **🔍 Competitor Gap Analysis**: Inspect competitor channels to extract metadata, content styles, and audience demands.
+*   **🌓 Smooth Theme Switching**: Supports site-wide Dark and Light mode themes with HSL colors and animated togglers.
+*   **📱 Mobile Responsive**: Collapsible side drawer with dim overlays for optimized mobile and tablet displays.
+*   **⚡ API Versioning & Rate Throttling**: Safe, version-namespaces (`/api/v1/`) with secure User (1000/day) and Anon (100/day) limits.
 
 ---
 
@@ -19,16 +21,14 @@ TrendPilot AI is an all-in-one AI platform designed for digital content creators
 ### Frontend
 *   **Core**: React 19 + Vite
 *   **State Management**: Zustand
-*   **Styling**: Tailwind CSS + CSS variables
-*   **Components**: Radix UI + shadcn/ui components
-*   **HTTP Client**: Axios (configured with token-interceptor capability)
+*   **Styling**: Tailwind CSS + CSS variables + Lucide Icons
+*   **HTTP Client**: Axios (with automatic token rotation & refresh interceptors)
 
 ### Backend
 *   **Core**: Django 6.0 + Django REST Framework (DRF)
-*   **Authentication**: JSON Web Token (JWT) via `django-rest-framework-simplejwt`
-*   **AI Engine**: Google Gemini API (leveraging Gemini 1.5 Flash)
-*   **Database**: SQLite (for development), migration-ready for PostgreSQL
-*   **Background Tasks**: Celery & Redis (ready for scraping and async processing)
+*   **Authentication**: JSON Web Token (SimpleJWT)
+*   **AI Engine**: Google Gemini API (using `gemini-flash-latest`)
+*   **Database**: SQLite (default), PostgreSQL / Neon Database (ready)
 
 ---
 
@@ -47,16 +47,12 @@ TrendPilot/
 │   ├── trends/            # Social media trend scoring and retrieval
 │   └── utils/             # Gemini API clients, web scrapers, helper scripts
 ├── frontend/              # React + Vite Frontend
-│   ├── public/            # Static assets (favicons, previews)
 │   ├── src/
 │   │   ├── api/           # Axios HTTP client configuration
-│   │   ├── assets/        # Media assets (logos, generated images)
-│   │   ├── components/    # Reusable shadcn/ui & custom React components
+│   │   ├── components/    # Reusable & custom React components (ThemeToggle, Sidebar)
 │   │   ├── hooks/         # Custom React hooks (auth, theme, trends)
-│   │   ├── layouts/       # Dashboard & Auth route layout frames
+│   │   ├── layouts/       # MainLayout responsive frames
 │   │   ├── pages/         # Page views (Dashboard, Trends, Login, Register)
-│   │   ├── routes/        # App routing system & ProtectedRoute guard
-│   │   ├── services/      # Backend API communication wrappers
 │   │   └── store/         # Zustand global state management
 └── .gitignore             # Consolidated monorepo gitignore file
 ```
@@ -103,16 +99,27 @@ TrendPilot/
     DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
     ```
 
-5.  **Run Database Migrations**:
+5.  **Neon / PostgreSQL Configuration (Optional)**:
+    If you wish to use PostgreSQL (such as Neon DB), simply add these environment variables to `backend/.env`:
+    ```env
+    DB_NAME=your_neon_db_name
+    DB_USER=your_neon_db_user
+    DB_PASSWORD=your_neon_db_password
+    DB_HOST=your_neon_db_hostname.neon.tech
+    DB_PORT=5432
+    ```
+    If these variables are omitted, the app will automatically fall back to the SQLite local database file.
+
+6.  **Run Database Migrations**:
     ```bash
     python manage.py migrate
     ```
 
-6.  **Start the development server**:
+7.  **Start the development server**:
     ```bash
     python manage.py runserver
     ```
-    The backend API will be available at `http://127.0.0.1:8000/api/`.
+    The backend API will be available at `http://127.0.0.1:8000/api/v1/`.
 
 ---
 
@@ -129,9 +136,9 @@ TrendPilot/
     ```
 
 3.  **Configure environment variables**:
-    The frontend reads backend URLs from `frontend/.env`. Verify that it exists and points to your API:
+    Verify that `frontend/.env` exists and contains:
     ```env
-    VITE_API_URL=http://127.0.0.1:8000/api
+    VITE_API_URL=http://127.0.0.1:8000/api/v1
     VITE_APP_NAME=TrendPilot AI
     ```
 
@@ -140,8 +147,3 @@ TrendPilot/
     npm run dev
     ```
     Open your browser and navigate to `http://localhost:5173`.
-
----
-
-## 🔒 Security & Safety Note
-Never commit the `backend/.env` or `frontend/.env` variables. All temporary files, local SQLite databases (`db.sqlite3`), and local virtualenvs (`server/`) are ignored by the consolidated root `.gitignore` file.

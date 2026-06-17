@@ -48,30 +48,34 @@ const Dashboard = () => {
 
                 <StatsCard
                     title="Total Trends"
-                    value={loading ? "..." : stats?.trends?.count ?? "0"}
-                    growth={loading ? "" : stats?.trends?.growth ?? "+0%"}
+                    value={stats?.trends?.count ?? "0"}
+                    growth={stats?.trends?.growth ?? "+0%"}
                     icon={<TrendingUp />}
+                    loading={loading}
                 />
 
                 <StatsCard
                     title="Generated Hooks"
-                    value={loading ? "..." : stats?.hooks?.count ?? "0"}
-                    growth={loading ? "" : stats?.hooks?.growth ?? "+0%"}
+                    value={stats?.hooks?.count ?? "0"}
+                    growth={stats?.hooks?.growth ?? "+0%"}
                     icon={<Sparkles />}
+                    loading={loading}
                 />
 
                 <StatsCard
                     title="AI Scripts"
-                    value={loading ? "..." : stats?.scripts?.count ?? "0"}
-                    growth={loading ? "" : stats?.scripts?.growth ?? "+0%"}
+                    value={stats?.scripts?.count ?? "0"}
+                    growth={stats?.scripts?.growth ?? "+0%"}
                     icon={<FileText />}
+                    loading={loading}
                 />
 
                 <StatsCard
                     title="Competitors"
-                    value={loading ? "..." : stats?.competitors?.count ?? "0"}
-                    growth={loading ? "" : stats?.competitors?.growth ?? "+0%"}
+                    value={stats?.competitors?.count ?? "0"}
+                    growth={stats?.competitors?.growth ?? "+0%"}
                     icon={<Users />}
+                    loading={loading}
                 />
 
             </DashboardGrid>
@@ -80,7 +84,7 @@ const Dashboard = () => {
 
                 <div className="xl:col-span-2">
 
-                    <AnalyticsChart />
+                    <AnalyticsChart data={stats?.chart_data} />
 
                 </div>
 

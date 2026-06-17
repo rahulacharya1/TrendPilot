@@ -6,9 +6,22 @@ const ScriptForm = ({ onGenerate, loading }) => {
     const [topic, setTopic] = useState("")
 
     const handleGenerate = async () => {
-        if (!topic.trim() || loading) return
+        const trimmedTopic = topic.trim()
+        if (!trimmedTopic) {
+            toast.error("Topic is required.")
+            return
+        }
+        if (trimmedTopic.length < 3) {
+            toast.error("Topic must be at least 3 characters long.")
+            return
+        }
+        if (trimmedTopic.length > 100) {
+            toast.error("Topic must be 100 characters or less.")
+            return
+        }
+        if (loading) return
         try {
-            await onGenerate(topic)
+            await onGenerate(trimmedTopic)
             toast.success("AI script generated successfully!")
             setTopic("")
         } catch (err) {

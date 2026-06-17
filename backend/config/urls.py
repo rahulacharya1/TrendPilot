@@ -4,10 +4,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api/accounts/', include('accounts.urls')),
-    path('api/trends/', include('trends.urls')),
-    path('api/hooks/', include('hooks.urls')),
-    path('api/scripts/', include('scripts.urls')),
-    path('api/competitors/', include('competitors.urls')),
-    path('api/analytics/', include('analytics.urls')),
+    path('api/v1/accounts/', include('accounts.urls')),
+    path('api/v1/trends/', include('trends.urls')),
+    path('api/v1/hooks/', include('hooks.urls')),
+    path('api/v1/scripts/', include('scripts.urls')),
+    path('api/v1/competitors/', include('competitors.urls')),
+    path('api/v1/analytics/', include('analytics.urls')),
 ]
