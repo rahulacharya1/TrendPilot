@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Sparkles, HelpCircle } from "lucide-react"
 import { toast } from "sonner"
 
 const HookForm = ({ onGenerate, loading, initialTopic }) => {
     const [topic, setTopic] = useState(initialTopic || "")
+    const [prevInitialTopic, setPrevInitialTopic] = useState(initialTopic)
 
-    useEffect(() => {
-        if (initialTopic) {
-            setTopic(initialTopic)
-        }
-    }, [initialTopic])
+    if (initialTopic !== prevInitialTopic) {
+        setTopic(initialTopic || "")
+        setPrevInitialTopic(initialTopic)
+    }
 
     const handleGenerate = async () => {
         const trimmedTopic = topic.trim()

@@ -111,7 +111,7 @@ const Home = () => {
                 {/* HERO SECTION WITH DYNAMIC GRADIENTS */}
                 <section className="relative py-20 lg:py-32 overflow-hidden px-6">
                     {/* Glowing Orbs */}
-                    <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none animate-pulse duration-[6000ms]" />
+                    <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none animate-pulse duration-6000" />
                     <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
                     
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
@@ -179,7 +179,7 @@ const Home = () => {
                         {/* HERO MOCKUP WITH DECORATIVE FLOATING METRICS */}
                         <div className="lg:col-span-6 flex justify-center relative">
                             {/* Floating Card 1 */}
-                            <div className="absolute -top-6 -left-6 bg-card/80 backdrop-blur-md border border-border/60 p-4 rounded-2xl shadow-lg z-20 flex items-center gap-3 animate-bounce duration-[4000ms] hidden sm:flex select-none">
+                            <div className="absolute -top-6 -left-6 bg-card/80 backdrop-blur-md border border-border/60 p-4 rounded-2xl shadow-lg z-20 hidden sm:flex items-center gap-3 animate-bounce duration-4000 select-none">
                                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
                                     <Activity className="w-5 h-5" />
                                 </div>
@@ -190,7 +190,7 @@ const Home = () => {
                             </div>
 
                             {/* Floating Card 2 */}
-                            <div className="absolute -bottom-6 -right-6 bg-card/80 backdrop-blur-md border border-border/60 p-4 rounded-2xl shadow-lg z-20 flex items-center gap-3 animate-bounce duration-[5000ms] hidden sm:flex select-none">
+                            <div className="absolute -bottom-6 -right-6 bg-card/80 backdrop-blur-md border border-border/60 p-4 rounded-2xl shadow-lg z-20 hidden sm:flex items-center gap-3 animate-bounce duration-5000 select-none">
                                 <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center">
                                     <Globe className="w-5 h-5" />
                                 </div>

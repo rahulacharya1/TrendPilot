@@ -19,7 +19,7 @@ const GapAnalysis = ({ analysis, loading }) => {
 
     if (!analysis) {
         return (
-            <div className="flex flex-col items-center justify-center p-12 bg-card text-foreground rounded-2xl border border-border/80 shadow-xs text-center select-none min-h-[300px] h-full">
+            <div className="flex flex-col items-center justify-center p-12 bg-card text-foreground rounded-2xl border border-border/80 shadow-xs text-center select-none min-h-75 h-full">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
                     <FileText className="w-6 h-6 text-primary" />
                 </div>

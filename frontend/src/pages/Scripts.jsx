@@ -132,6 +132,7 @@ const Scripts = () => {
 
     useEffect(() => {
         fetchScripts()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleGenerate = async (topic) => {

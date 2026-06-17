@@ -2,7 +2,7 @@ import { useState } from "react"
 
 const useCompetitors = () => {
 
-    const [competitors, setCompetitors] = useState([])
+    const [competitors] = useState([])
 
     const analyzeCompetitor = async (
         name
