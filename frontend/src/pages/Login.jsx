@@ -17,18 +17,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!email.trim() || !password.trim()) {
-            setError("Email and password are required.")
-            return
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email.trim())) {
-            setError("Please enter a valid email address.")
-            return
-        }
-
-        if (password.length < 8) {
-            setError("Password must be at least 8 characters long.")
+            setError("Email or Username and password are required.")
             return
         }
 
@@ -85,11 +74,11 @@ const Login = () => {
                     <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
                         <div>
                             <label className="block text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                Email Address
+                                Email or Username
                             </label>
                             <input
-                                type="email"
-                                placeholder="name@example.com"
+                                type="text"
+                                placeholder="name@example.com or username"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 disabled={loading}

@@ -1,11 +1,14 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.db.models import Q
+from django.contrib.auth import get_user_model
 from trends.models import Trend
 from hooks.models import Hook
 from scripts.models import Script
 from competitors.models import CompetitorAnalysis
+
+User = get_user_model()
 
 class DashboardStatsView(APIView):
     permission_classes = [IsAuthenticated]
@@ -54,6 +57,58 @@ class DashboardStatsView(APIView):
             "competitors": {
                 "count": competitors_count,
                 "growth": "+5%"
+            },
+            "chart_data": chart_data
+        })
+
+
+class AdminStatsView(APIView):
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+    def get(self, request):
+        total_users = User.objects.count()
+        total_trends = Trend.objects.count()
+        total_hooks = Hook.objects.count()
+        total_scripts = Script.objects.count()
+        
+        # Monthly system-wide generations over the last 6 calendar months
+        import calendar
+        from django.utils import timezone
+        
+        now = timezone.now()
+        chart_data = []
+        
+        for i in range(5, -1, -1):
+            year_offset = (now.month - 1 - i) // 12
+            month_idx = (now.month - 1 - i) % 12 + 1
+            year_num = now.year + year_offset
+            month_name = calendar.month_abbr[month_idx]
+            
+            h_count = Hook.objects.filter(created_at__month=month_idx, created_at__year=year_num).count()
+            s_count = Script.objects.filter(created_at__month=month_idx, created_at__year=year_num).count()
+            total_val = h_count + s_count
+            
+            chart_data.append({
+                "label": month_name,
+                "val": total_val
+            })
+
+        return Response({
+            "users": {
+                "count": total_users,
+                "growth": "+15%"
+            },
+            "trends": {
+                "count": total_trends,
+                "growth": "+5%"
+            },
+            "hooks": {
+                "count": total_hooks,
+                "growth": "+25%"
+            },
+            "scripts": {
+                "count": total_scripts,
+                "growth": "+18%"
             },
             "chart_data": chart_data
         })

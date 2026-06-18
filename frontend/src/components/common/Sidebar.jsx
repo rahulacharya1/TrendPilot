@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom"
+import useAuthStore from "@/store/authStore"
 import {
     LayoutDashboard,
     TrendingUp,
@@ -6,10 +7,14 @@ import {
     FileText,
     Users,
     BarChart3,
+    Shield,
 } from "lucide-react"
 import logo from "@/assets/logo/tp-logo.png"
 
 const Sidebar = ({ isOpen, onClose }) => {
+    const user = useAuthStore((state) => state.user)
+    const isAdmin = user && (user.isStaff || user.isSuperuser)
+
     const menus = [
         {
             title: "Dashboard",
@@ -42,6 +47,14 @@ const Sidebar = ({ isOpen, onClose }) => {
             path: "/analytics",
         },
     ]
+
+    if (isAdmin) {
+        menus.push({
+            title: "Admin Panel",
+            icon: Shield,
+            path: "/admin-panel",
+        })
+    }
 
     return (
         <aside className={`w-64 min-h-screen border-r border-sidebar-border bg-sidebar text-sidebar-foreground p-6 flex flex-col justify-between select-none fixed inset-y-0 left-0 z-50 lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out ${

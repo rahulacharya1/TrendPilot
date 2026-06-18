@@ -17,10 +17,12 @@ import Hooks from "@/pages/Hooks"
 import Scripts from "@/pages/Scripts"
 import Competitors from "@/pages/Competitors"
 import Analytics from "@/pages/Analytics"
+import AdminDashboard from "@/pages/AdminDashboard"
 
 import NotFound from "@/pages/NotFound"
 
 import ProtectedRoute from "./ProtectedRoute"
+import AdminRoute from "./AdminRoute"
 
 const AppRoutes = () => {
 
@@ -116,6 +118,15 @@ const AppRoutes = () => {
                         <ProtectedRoute>
                             <Analytics />
                         </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin-panel"
+                    element={
+                        <AdminRoute>
+                            <AdminDashboard />
+                        </AdminRoute>
                     }
                 />
 
